@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClipGrab — Download Videos from YouTube, Facebook, Instagram, TikTok & X</title>
+<meta name="description" content="Paste a video link from YouTube, Facebook, Instagram, TikTok or Twitter/X and download it in the quality you need.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="brand-mark"><i class="bi bi-play-fill"></i></span>
+      <span class="brand-name">ClipGrab</span>
+    </div>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark or light mode">
+      <i class="bi bi-moon-stars-fill"></i>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">YouTube · Facebook · Instagram · TikTok · Twitter/X</p>
+      <h1>Paste a link. Pick a quality. <span class="accent">Done.</span></h1>
+      <p class="hero-sub">One box, five platforms, no sign-up. ClipGrab reads the link, finds every available resolution, and hands you a direct download.</p>
+
+      <form id="searchForm" class="search-card" autocomplete="off">
+        <i class="bi bi-link-45deg field-icon"></i>
+        <input
+          type="text"
+          id="videoUrl"
+          class="search-input"
+          placeholder="Paste video URL..."
+          aria-label="Video URL"
+          required
+        >
+        <button type="button" id="pasteBtn" class="icon-btn" title="Paste from clipboard">
+          <i class="bi bi-clipboard"></i>
+        </button>
+        <button type="submit" id="downloadBtn" class="cta-btn">
+          <span class="btn-label">Get video</span>
+          <span class="btn-spinner d-none"><i class="bi bi-arrow-repeat spin"></i></span>
+        </button>
+      </form>
+
+      <p id="statusMsg" class="status-msg" role="status"></p>
+    </div>
+  </section>
+
+  <section id="resultSection" class="result-section d-none">
+    <div class="container">
+      <div class="result-card">
+        <div class="result-thumb">
+          <img id="thumbImg" src="" alt="Video thumbnail">
+          <span id="platformBadge" class="platform-badge"></span>
+        </div>
+        <div class="result-meta">
+          <h2 id="videoTitle">—</h2>
+          <ul class="meta-list">
+            <li><i class="bi bi-person"></i> <span id="videoUploader">—</span></li>
+            <li><i class="bi bi-clock"></i> <span id="videoDuration">—</span></li>
+          </ul>
+
+          <div class="format-block">
+            <h3><i class="bi bi-film"></i> Video quality</h3>
+            <div id="videoFormats" class="format-grid"></div>
+          </div>
+
+          <div class="format-block">
+            <h3><i class="bi bi-music-note-beamed"></i> Audio only</h3>
+            <div id="audioFormat" class="format-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Built for personal/educational use. Please respect each platform's Terms of Service and content owners' rights.</p>
+  </div>
+</footer>
+
+<script>
+  // When embedded in Blogger, this is the only line you need to change:
+  const API_BASE_URL = "{{ api_base_url|default('') }}" || window.location.origin;
+</script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
